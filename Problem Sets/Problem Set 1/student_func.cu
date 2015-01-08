@@ -70,8 +70,9 @@ void your_rgba_to_greyscale(const uchar4 * const h_rgbaImage,
   //const dim3 blockSize(1, 1, 1);
   const dim3 blockSize(1, numRows, 1);
   //const dim3 gridSize( 1, 1, 1);
-  const dim3 gridSize( numCols/blockSize.x, numRows/blockSize.y, 1);
-  rgba_to_greyscale<<<gridSize, blockSize>>>(d_rgbaImage, d_greyImage, numRows, numCols);
+  const dim3 gridSize(numCols/blockSize.x, numRows/blockSize.y, 1);
+  rgba_to_greyscale<<<gridSize, blockSize>>>(d_rgbaImage, d_greyImage,
+                                             numRows, numCols);
   
   cudaDeviceSynchronize(); checkCudaErrors(cudaGetLastError());
 
